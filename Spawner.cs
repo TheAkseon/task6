@@ -6,20 +6,17 @@ public class Spawner : MonoBehaviour
 {
     [SerializeField] private GameObject _template;
     [SerializeField] private Transform _spawnPoint;
-    private float _time = 0;
-    private int _nextSpawn;
+    private float _flightTime = 0;
+    private int _delayBetweenSpawns = 1;
+    private int _timeUntilNextSpawn = 2;
 
-    private void Start()
-    {
-        _nextSpawn = _nextSpawn + 1;
-    }
 
     private void Update()
     {
-        _time += Time.deltaTime;
-        if (_time - _nextSpawn > 0)
+        _flightTime += Time.deltaTime;
+        if (_fligthTime - _delayBetweenSpawns > 0)
         {
-            _nextSpawn = _nextSpawn + 2;
+            _delayBetweenSpawns = _delayBetweenSpawns + _timeUntilNextSpawn;
             Instantiate(_template, _spawnPoint.position, Quaternion.identity);
         }
     }
